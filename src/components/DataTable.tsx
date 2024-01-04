@@ -15,7 +15,8 @@ const columns: GridColDef[] = [
     { field: 'light', headerName: "Light", flex: 1},
     { field: 'row_spacing', headerName: "Row Spacing", flex: 1},
     { field: 'minimum_root_depth', headerName: "Minimum Root Depth", flex: 1},
-    { field: 'soil_nutriments', headerName: "Soil Nutriments", flex: 1}
+    { field: 'soil_nutriments', headerName: "Soil Nutriments", flex: 1},
+    { field: 'when_to_plant', headerName: "When to Plant", flex: 1}
 ]
 
 
@@ -46,22 +47,22 @@ function DataTable() {
             open={open}
             onClose={handleClose}
         />
-        <div className="flex flex-row">
+        <div className="flex flex-row" style={{flex:3}}>
             <div>
                 <button
-                    className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white"
+                    className="p-3 font-semibold bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white"
                     onClick={() => handleOpen()}
                 >
                     Create New Plant
                 </button>
             </div> 
-            <Button onClick={handleOpen} className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white" >Update</Button>
-            <Button onClick={deleteData} className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white" >Delete</Button>
+            <Button onClick={handleOpen} className="p-3 font-semibold bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white" >Update</Button>
+            <Button onClick={deleteData} className="p-3 font-semibold bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white" >Delete</Button>
         </div>
-        <div className={ open ? "hidden" : "container mx-10 my-5 flex flex-col"}
-            style={{ height: 400, width: '100%'}}
+        <div className={ open ? "hidden" : "container mx-12 my-5 flex flex-col"}
+            style={{ height: 400, width: '100%', maxWidth: '1400px'}}
         >
-            <h2 className="p-3 bg-slate-300 my-2 rounded">My Plants</h2>
+            <h2 className="p-3 font-semibold bg-slate-300 my-2 rounded text-2xl">My Plants</h2>
             <DataGrid rows={plantData} columns={columns} rowsPerPageOptions={[5]}
             checkboxSelection={true} 
             onSelectionModelChange={ (item:any) => {
@@ -74,3 +75,4 @@ function DataTable() {
 }
 
 export default DataTable
+

@@ -1,7 +1,8 @@
 import Home from '../pages/Home'
 import Dashboard from '../pages/Dashboard'
-import About from '../pages/About'
 import MyPlants from '../pages/MyPlants'
+import WhenToPlant from '../pages/WhenToPlant';
+
 
 interface RouteType {
     path: string,
@@ -21,14 +22,14 @@ const routes: RouteType[] = [
       name: "Dashboard",
     },
     {
-      path: "/about",
-      component: About,
-      name: "About",
-    },
-    {
       path: "/plants",
       component: MyPlants,
       name: "My Plants",
+    },
+    {
+      path: '/plants/when_to_plant',
+      component: WhenToPlant,
+      name: 'When to Plant',
     },
 ];
 

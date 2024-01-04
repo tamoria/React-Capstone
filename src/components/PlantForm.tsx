@@ -5,7 +5,7 @@ import Input from "./Input"
 import { useForm } from 'react-hook-form'
 import { server_calls } from "../api/server"
 import { useDispatch, useStore } from "react-redux"
-import { chooseCommon, chooseScientific, chooseDays, chooseSowing, chooseLight, chooseRow, chooseMinimum, chooseSoil } from "../redux/slices/RootSlice"
+import { chooseCommon, chooseScientific, chooseDays, chooseSowing, chooseLight, chooseRow, chooseMinimum, chooseSoil, chooseWhen } from "../redux/slices/RootSlice"
 
 interface PlantFormProps {
   id?: string[]
@@ -34,13 +34,15 @@ const PlantForm = ( props:PlantFormProps) => {
       dispatch(chooseRow(data.row_spacing));
       dispatch(chooseMinimum(data.minimum_root_depth));
       dispatch(chooseSoil(data.soil_nutriments));
+      dispatch(chooseWhen(data.when_to_plant));
 
       server_calls.create(store.getState())
+      setTimeout(() => {window.location.reload()}, 1000);
     }
   }
 
   return (
-    <div>
+    <div style={{ fontSize: '20px', height: '400px', overflowY: 'auto' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="common_name">Common Name</label>
@@ -73,6 +75,10 @@ const PlantForm = ( props:PlantFormProps) => {
         <div>
           <label htmlFor="soil_nutriments">Soil Nutriments</label>
           <Input {...register('soil_nutriments')} name='soil_nutriments' placeholder="Soil Nutriments" />
+        </div>
+        <div>
+          <label htmlFor="when_to_plant">When to Plant</label>
+          <Input {...register('when_to_plant')} name='when_to_plant' placeholder="When to Plant" />
         </div>
         <div className="flex p-1">
           <Button className="flex justify-start m-3 bg-slate-300 p-2 rounded hover:bg-slate-800 text-white"

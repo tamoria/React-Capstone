@@ -11,6 +11,7 @@ const rootSlice = createSlice({
         row_spacing: "Row Spacing",
         minimum_root_depth: "Minimum Root Depth",
         soil_nutriments: "Soil Nutriments",
+        when_to_plant: "When to Plant",
     },
     reducers: {
         chooseCommon: (state, action) => { state.common_name = action.payload},
@@ -20,9 +21,10 @@ const rootSlice = createSlice({
         chooseLight: (state, action) => { state.light = action.payload},
         chooseRow: (state, action) => { state.row_spacing = action.payload},
         chooseMinimum: (state, action) => { state.minimum_root_depth = action.payload},
-        chooseSoil: (state, action) => { state.soil_nutriments = action.payload}
+        chooseSoil: (state, action) => { state.soil_nutriments = action.payload},
+        chooseWhen: (state, action) => { state.when_to_plant = action.payload}
     }
 })
 
 export const reducer = rootSlice.reducer;
-export const { chooseCommon, chooseScientific, chooseDays, chooseSowing, chooseLight, chooseRow, chooseMinimum, chooseSoil} = rootSlice.actions
+export const { chooseCommon, chooseScientific, chooseDays, chooseSowing, chooseLight, chooseRow, chooseMinimum, chooseSoil, chooseWhen} = rootSlice.actions
