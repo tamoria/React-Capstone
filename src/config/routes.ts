@@ -1,8 +1,7 @@
-import Home from '../pages/Home'
-import Dashboard from '../pages/Dashboard'
-import MyPlants from '../pages/MyPlants'
+import Home from '../pages/Home';
+import Dashboard from '../pages/Dashboard';
+import MyPlants from '../pages/MyPlants';
 import WhenToPlant from '../pages/WhenToPlant';
-
 
 interface RouteType {
     path: string,

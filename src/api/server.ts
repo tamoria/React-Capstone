@@ -1,13 +1,12 @@
 const token = 'ad801b7a1483c42a085b97d0ebf52d04f574f0cb28cb9312'
 
 export const server_calls = {
-    get: async () => { 
-        const response = await fetch(`https://green-thumb-pqsc.onrender.com/api/plants`,
+    get: async (userId: string) => { 
+        const response = await fetch(`https://green-thumb-pqsc.onrender.com/api/plants/${userId}`,
         {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
                 'x-access-token': `Bearer ${token}`
             }
 
@@ -20,13 +19,12 @@ export const server_calls = {
         return await response.json()
     },
 
-    create: async (data: any = {}) => {
-        const response = await fetch(`https://green-thumb-pqsc.onrender.com/api/plants`,
+    create: async (userId: string, data: any = {}) => {
+        const response = await fetch(`https://green-thumb-pqsc.onrender.com/api/plants/${userId}`,
         {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
                 'x-access-token': `Bearer ${token}`
             },
             body: JSON.stringify(data)
@@ -40,13 +38,12 @@ export const server_calls = {
         return await response.json()
     },
 
-    update: async (id: string, data:any = {}) => {
-        const response = await fetch(`https://green-thumb-pqsc.onrender.com/api/plants/${id}`,
+    update: async (id: string, userId: string, data:any = {}) => {
+        const response = await fetch(`https://green-thumb-pqsc.onrender.com/api/plants/${id}/${userId}`,
         {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
                 'x-access-token': `Bearer ${token}`
             },
             body: JSON.stringify(data)
@@ -60,13 +57,12 @@ export const server_calls = {
         return await response.json()
     },
 
-    delete: async (id: string) => {
-        const response = await fetch(`https://green-thumb-pqsc.onrender.com/api/plants/${id}`,
+    delete: async (id: string, userId: string) => {
+        const response = await fetch(`https://green-thumb-pqsc.onrender.com/api/plants/${id}/${userId}`,
         {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
                 'x-access-token': `Bearer ${token}`
             },
 

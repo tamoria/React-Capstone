@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Button from "./Button"
 import Modal from "./Modal"
 import { server_calls } from '../api/server';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useGetData } from '../custom-hooks/FetchData';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useEffect } from 'react';
 
 
 const columns: GridColDef[] = [
@@ -24,6 +26,18 @@ function DataTable() {
     let [ open, setOpen ] = useState(false);
     const { plantData, getData } = useGetData();
     const [ selectionModel, setSelectionModel ] = useState<string[]>([])
+    const { user } = useAuth0();
+    const userId = 'marianne878@gmail.com';
+
+    useEffect(() => {
+        server_calls.get(userId)
+            .then(data => {
+                // handle data
+            })
+            .catch(error => {
+                // handle error
+            });
+    }, [userId]);
 
     const handleOpen = () => {
         setOpen(true)
@@ -73,6 +87,8 @@ function DataTable() {
     </>
   )
 }
+
+
 
 export default DataTable
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useGetData } from '../custom-hooks/FetchData';
 import Input from '../components/Input';
@@ -25,12 +25,17 @@ function WhenToPlant() {
   const [filterCriteria, setFilterCriteria] = useState('');
 
   // Filter by 'when_to_plant'
+
   const filterData = () => {
-    const filtered = plantData.filter((plant) =>
+    const filtered = plantData.filter((plant) => //@ts-ignore
+      plant.when_to_plant && typeof plant.when_to_plant === 'string' &&
+      //@ts-ignore
       plant.when_to_plant.toLowerCase().includes(filterCriteria.toLowerCase())
-    );
+    );//@ts-ignore
     setFilteredData(filtered);
   };
+  
+  
 
   return (
     <div
@@ -48,12 +53,14 @@ function WhenToPlant() {
         <div className="flex items-center space-x-2 mb-4" style={{ width: '40%' }} >
           <Input
             placeholder="Enter month"
+            //@ts-ignore
             value={filterCriteria}
-            onChange={(e) => setFilterCriteria(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilterCriteria(e.target.value)}
+
           />
           <Button onClick={filterData} className="p-3 bg-slate-300 rounded m-3 hover:bg-slate-800 hover:text-white">Filter</Button>
         </div>
-
+        
         <div className="flex">
           {/* DataGrid */}
           <div className="flex-3" style={{ width: '95%', height: '100%'}}>
@@ -74,3 +81,5 @@ function WhenToPlant() {
 }
 
 export default WhenToPlant;
+
+

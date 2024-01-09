@@ -11,15 +11,16 @@ function App() {
     <Auth0Provider
       domain={auth0Config.domain}
       clientId={auth0Config.clientId}
+      redirectUri="https://melodic-druid-241cea.netlify.app"
       authorizationParams={{
-        redirect_uri: window.location.origin
+        redirect_uri: "https://melodic-druid-241cea.netlify.app"
       }}
     >
       <HashRouter>
         <Navbar />
         <Provider store={store}>
           <Routes>
-            { routes.map((route: any, index: any) => (
+            {routes.map((route: any, index: any) => (
               <Route
                 key={index}
                 path={route.path}
@@ -27,7 +28,7 @@ function App() {
                   <route.component />
                 }
               />
-            )) }
+            ))}
           </Routes>
         </Provider>
       </HashRouter>

@@ -1,4 +1,3 @@
-import { lightGreen } from '@mui/material/colors';
 import Background from '../assets/images/widepic.avif';
 
 function Home() {

@@ -1,18 +1,21 @@
-import { useSubmit } from "react-router-dom"
-import Button from "./Button"
-import Input from "./Input"
+import Button from "./Button";
+import Input from "./Input";
 
-import { useForm } from 'react-hook-form'
-import { server_calls } from "../api/server"
-import { useDispatch, useStore } from "react-redux"
+import { useForm } from 'react-hook-form';
+import { server_calls } from "../api/server";
+import { useDispatch, useStore } from "react-redux";
+import { useAuth0 } from '@auth0/auth0-react';
 import { chooseCommon, chooseScientific, chooseDays, chooseSowing, chooseLight, chooseRow, chooseMinimum, chooseSoil, chooseWhen } from "../redux/slices/RootSlice"
+
 
 interface PlantFormProps {
   id?: string[]
 }
 
 const PlantForm = ( props:PlantFormProps) => {
-  const { register, handleSubmit } = useForm({})
+  const { register, handleSubmit } = useForm({});
+  const { user } = useAuth0();
+  const userId = 'marianne878@gmail.com';
   const dispatch = useDispatch();
   const store = useStore();
 
@@ -21,11 +24,12 @@ const PlantForm = ( props:PlantFormProps) => {
     console.log(props.id)
     console.log(data)
     if (props.id && props.id.length > 0) {
-      server_calls.update(props.id[0], data)
+      server_calls.update(props.id[0], userId, data)
       console.log(`Updated: ${ data.common_name } ${ props.id }`)
       setTimeout(() => {window.location.reload()}, 1000);
       event.target.reset()
     } else {
+      server_calls.create(userId, data)
       dispatch(chooseCommon(data.common_name));
       dispatch(chooseScientific(data.scientific_name));
       dispatch(chooseDays(data.days_to_harvest));
